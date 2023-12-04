@@ -1,6 +1,6 @@
 const io = require("socket.io")(8800, {
     cors: {
-        origin: "https://connectme-socialmedia.netlify.app"
+        origin: "http://localhost:5173"
     }
 })
 
@@ -32,6 +32,7 @@ io.on("connection", (socket)=>{
     //Send message
     socket.on('send-message', (data)=>{
         const {receiverId} = data
+        console.log(data)
         const user = activeUsers.find((user)=>user.userId === receiverId)
         console.log("Sending from socket to : ", receiverId)
         if(user){
